@@ -120,3 +120,54 @@ int main()
     return 0;
 }
 
+=================================================================================================================================================================
+#include <iostream>
+#include <string.h>
+using namespace std;
+struct size{int breast, waist, hips;};
+
+
+struct WonderfulWoman{
+    char name[64];
+    int age;
+    int height;
+    int weight;
+    size volume;
+    bool eng;
+};
+
+void showData(const WonderfulWoman Obj[], int amount)
+{
+   cout<<"№\t"<<"Имя\t"<<"Возраст\t"<<"Рост\t"<<"Вес\t"<<"Объемы\t\t"<<"Английчкий\t"<<endl;
+   cout<<"=========================================================================="<<endl;
+   for(int i=0; i<amount; i++){
+       cout<<i+1<<"\t"<<Obj[i].name<<"\t"<<Obj[i].age<<"\t"<<Obj[i].height<<"\t"
+       <<Obj[i].weight<<"\t"<<Obj[i].volume.breast<<"\t"<<Obj[i].volume.waist<<"\t"
+       <<Obj[i].volume.hips<<"\t"<<Obj[i].eng<<endl;
+   }
+}
+
+
+
+int main()
+{
+    const int amount = 3;
+    WonderfulWoman Woman[amount]={};
+    for(int i=0;i<amount;i++){
+    
+        cout<<"Модель ";cin>>Woman[i].name;
+        cout<<"Возраст ";cin>>Woman[i].age;
+        cout<<"Рост ";cin>>Woman[i].height;
+        cout<<"Вес ";cin>>Woman[i].weight;
+        cout<<"Обьёмы ";cin>>Woman[i].volume.breast>>Woman[i].volume.waist>>Woman[i].volume.hips;
+        cout<<"Английский ";cin>>Woman[i].eng;
+        
+        cin.get();cout<<endl;
+        
+    }
+
+    showData(Woman,amount);
+    
+
+    return 0;
+}
