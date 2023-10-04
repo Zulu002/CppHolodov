@@ -1,0 +1,122 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <string.h>
+using namespace std;
+struct Size
+{
+    int breast;
+    int waist;
+    int hips;
+};
+
+struct WonderfulWoman{
+    char name[32];
+    int age;
+    int height;
+    int weight;
+    Size volume;
+    bool engKnowledge;
+};
+
+void showData(const WonderfulWoman & Obj)
+{
+    cout<<"Модель "<<Obj.name<<endl;
+    cout<<"Возраст "<<Obj.age<<endl;
+    cout<<"Рост "<<Obj.height<<endl;
+    cout<<"Вес "<<Obj.weight<<endl;
+    cout<<"Обьёмы "<<Obj.volume.breast<<"/"<<Obj.volume.waist<<"/"<<Obj.volume.hips<<endl;
+    cout<<"Английский "<<Obj.engKnowledge<<endl;
+    cout<<"Англ(1-да нет-0) "<<Obj.engKnowledge<<endl;
+}
+
+
+
+int main()
+{
+    //Size volume={90,60,90};
+    WonderfulWoman first = {"Оксана",23,172,55,{90,60,90},1};
+    // WonderfulWoman firstWoman = {};
+    // strcpy(firstWoman.name,"Оксана");
+    // firstWoman.age= 23;
+    // firstWoman.height= 172;
+    // firstWoman.weight = 55;
+    // firstWoman.engKnowledge = 1;
+    
+    // firstWoman.volume.breast=90;
+    // firstWoman.volume.waist=60;
+    // firstWoman.volume.hips=90;
+    
+    showData(first);
+
+    return 0;
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+#include <iostream>
+#include <string.h>
+#define M 15
+using namespace std;
+struct AeroflotP
+{
+    char kuda[M];
+    int num;
+    char type[M];
+};
+
+
+
+int main()
+{
+    static int n=3;
+    AeroflotP fly[n];
+    for(int i=0; i<n; i++){
+        cout<<"Введите номер рейса: "; 
+        cin>>fly[i].num;
+        cout<<"\nВведите тип самолёта: "; 
+        cin>>fly[i].type;
+        cout<<"\nВведите тункт назначения: "; 
+        cin>>fly[i].kuda;
+    }
+    char cur[M];
+    for(int i=0; i<n-1;i++){
+        for(int j=i+1;j<n;j++){
+            if(strcmp(fly[i].kuda,fly[j].kuda)>0){
+                strcpy(cur,fly[i].kuda);
+                strcpy(fly[i].kuda,fly[j].kuda);
+                strcpy(fly[j].kuda,cur);
+                
+            }
+        }
+    }
+    for(int i=0;i<n;i++){
+        cout<<fly[i].kuda<<" "<<fly[i].num<<" "<<fly[i].type<<endl;
+        
+    }
+    char temp[M];
+    int count;
+    while(strcmp(temp,"exit")){
+        cout<<"\nВведите желаемый тип самолёта";cin>>temp;
+        for(int i=0; i<n;i++){
+            if(strcmp(fly[i].type,temp)==0){
+                cout<<endl<<fly[i].kuda<<" "<<fly[i].num<<endl;
+                count++;
+            }
+        }
+        if(count == 0) cout<<"\nНет твких рейсов\n";
+    }
+    
+    
+
+    return 0;
+}
+
