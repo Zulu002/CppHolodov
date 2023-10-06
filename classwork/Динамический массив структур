@@ -83,3 +83,99 @@ void showData(const Sponsor* Obj, const int amount)
         cout << i + 1 << "  " << Obj[i].surname << '\t' << Obj[i].name << '\t' << Obj[i].sum << endl;
      }
  }
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+#include <iostream>
+
+using namespace std;
+
+struct size{int breast, waist, hips;};
+
+struct WonderfulWoman{
+    char name[64];
+    int age;
+    int height;
+    int weight;
+    size volume;
+    bool eng;
+};
+
+
+
+WonderfulWoman* AddStruct(WonderfulWoman* Obj, const int amount);
+void setData(WonderfulWoman* Obj, const int amount);
+void showData(const WonderfulWoman* Obj, const int amount);
+
+
+int main()
+{
+    WonderfulWoman* OurWoman = 0;
+    int WomanAmount = 0;
+    int YesOrNot = 0;
+    
+    do
+    {
+        OurWoman = AddStruct(OurWoman, WomanAmount);
+        setData(OurWoman, WomanAmount);
+        
+        WomanAmount++;
+        
+        cout<<"Продолжить ввод данных (1-да, 0-нет): ";
+        cin>>YesOrNot;
+        cin.get();
+    }
+    while(YesOrNot != 0);
+    showData(OurWoman, WomanAmount);
+    
+    delete[] OurWoman;
+    return 0;
+}
+
+
+  WonderfulWoman* AddStruct(WonderfulWoman* Obj, const int amount)
+  {
+      if(amount==0)
+      {
+          Obj = new WonderfulWoman[amount +1];
+      }
+      else
+      {
+          WonderfulWoman* tempObj = new WonderfulWoman[amount +1];
+          
+          for(int i = 0; i< amount; i++)
+          {
+              tempObj[i] = Obj[i];
+          }
+          delete [] Obj;
+          
+          Obj = tempObj;
+      }
+      return Obj;
+  }
+  
+  void setData(WonderfulWoman* Woman, const int amount)
+ {
+        cout<<"Модель ";cin>>Woman[amount].name;
+        cout<<"Возраст ";cin>>Woman[amount].age;
+        cout<<"Рост ";cin>>Woman[amount].height;
+        cout<<"Вес ";cin>>Woman[amount].weight;
+        cout<<"Обьёмы ";cin>>Woman[amount].volume.breast>>Woman[amount].volume.waist>>Woman[amount].volume.hips;
+        cout<<"Английский ";cin>>Woman[amount].eng;
+        
+        cin.get();cout<<endl;
+ }
+
+  
+void showData(const WonderfulWoman* Obj, const int amount)
+ {
+     
+     cout<<"№\t"<<"Имя\t"<<"Возраст\t"<<"Рост\t"<<"Вес\t"<<"Объемы\t\t"<<"Английчкий\t"<<endl;
+     cout<<"=========================================================================="<<endl;
+     for(int i=0; i<amount; i++){
+       cout<<i+1<<"\t"<<Obj[i].name<<"\t"<<Obj[i].age<<"\t"<<Obj[i].height<<"\t"
+       <<Obj[i].weight<<"\t"<<Obj[i].volume.breast<<"\t"<<Obj[i].volume.waist<<"\t"
+       <<Obj[i].volume.hips<<"\t"<<Obj[i].eng<<endl;
+ }
+ }
